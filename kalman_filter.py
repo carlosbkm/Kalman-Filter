@@ -151,13 +151,14 @@ def kalman_filter(x, P):
         S = H * P * H.transpose() + R
         K = P * H.transpose() * S.inverse()
         x = x + (K * y)
-        P = (I - K * H) * P
+
+        P = (I - (K * H)) * P
 
         # prediction
-        x_prime = F * x + u
-        P_prime = F * P * F.transpose()
+        x = (F * x) + u
+        P = F * P * F.transpose()
 
-    return x_prime,P_prime
+    return x,P
 
 ############################################
 ### use the code below to test your filter!
