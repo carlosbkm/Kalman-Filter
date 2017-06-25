@@ -150,8 +150,9 @@ def kalman_filter(x, P):
         y = z - (H * x)
         S = H * P * H.transpose() + R
         K = P * H.transpose() * S.inverse()
-        x = x + (K * y)
 
+        # new state
+        x = x + (K * y)
         P = (I - (K * H)) * P
 
         # prediction
